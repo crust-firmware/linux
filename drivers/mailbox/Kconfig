@@ -171,4 +171,11 @@ config BCM_FLEXRM_MBOX
 	  Mailbox implementation of the Broadcom FlexRM ring manager,
 	  which provides access to various offload engines on Broadcom
 	  SoCs. Say Y here if you want to use the Broadcom FlexRM.
+
+config SUNXI_MSGBOX
+	bool "Allwinner sunxi Message Box"
+	depends on ARCH_SUNXI
+	help
+	  Mailbox driver for the hardware message box used on Allwinner sunxi
+	  SoCs to communicate with the SCP.
 endif
