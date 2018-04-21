@@ -1,0 +1,41 @@
+Allwinner sunxi Message Box
+===========================
+
+The hardware message box on sunxi SoCs is a two-user mailbox controller
+containing 8 unidirectional FIFOs bonded into 4 bidirectional mailbox channels.
+An interrupt is raised for received messages, but software must poll to know
+when a transmitted message has been acknowledged by the remote user.
+
+Refer to ./mailbox.txt for generic information about mailbox device-tree
+bindings.
+
+Mailbox Device Node:
+====================
+
+Required properties:
+--------------------
+- compatible:		Must contain at least "allwinner,sun6i-a31-msgbox".
+			Should also contain another SoC-specific string when
+			used on other SoCs which are compatible, e.g.
+			- allwinner,sun8i-h3-msgbox
+			- allwinner,sun50i-a64-msgbox
+- reg:			Contains the mailbox register address range (base
+			address and length).
+- clocks:		phandle for the clock controller and specifier.
+- resets:		phandle for the reset controller and specifier.
+- interrupts:		Contains interrupt information for the mailbox.
+- #mbox-cells		Must be 2 - the indexes of the transmit and receive
+			channels, respectively.
+
+Example:
+--------
+
+	msgbox: mailbox@1c17000 {
+		compatible = "allwinner,sun8i-h3-msgbox",
+		             "allwinner,sun6i-a31-msgbox";
+		reg = <0x01c17000 0x1000>;
+		clocks = <&ccu CLK_BUS_MSGBOX>;
+		resets = <&ccu RST_BUS_MSGBOX>;
+		interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
+		#mbox-cells = <2>;
+	};
