@@ -291,7 +291,7 @@ static SUNXI_CCU_GATE(bus_spdif_clk,	"bus-spdif",	"apb1",
 static SUNXI_CCU_GATE(bus_pio_clk,	"bus-pio",	"apb1",
 		      0x068, BIT(5), 0);
 static SUNXI_CCU_GATE(bus_ths_clk,	"bus-ths",	"apb1",
-		      0x068, BIT(8), 0);
+		      0x068, BIT(8), CLK_IGNORE_UNUSED);
 static SUNXI_CCU_GATE(bus_i2s0_clk,	"bus-i2s0",	"apb1",
 		      0x068, BIT(12), 0);
 static SUNXI_CCU_GATE(bus_i2s1_clk,	"bus-i2s1",	"apb1",
@@ -330,7 +330,8 @@ static struct clk_div_table ths_div_table[] = {
 	{ .val = 3, .div = 6 },
 };
 static SUNXI_CCU_DIV_TABLE_WITH_GATE(ths_clk, "ths", "osc24M",
-				     0x074, 0, 2, ths_div_table, BIT(31), 0);
+				     0x074, 0, 2, ths_div_table, BIT(31),
+				     CLK_IGNORE_UNUSED);
 
 static const char * const mod0_default_parents[] = { "osc24M", "pll-periph0",
 						     "pll-periph1" };
