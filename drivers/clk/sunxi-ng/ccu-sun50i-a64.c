@@ -341,7 +341,7 @@ static SUNXI_CCU_GATE(bus_spdif_clk,	"bus-spdif",	"apb1",
 static SUNXI_CCU_GATE(bus_pio_clk,	"bus-pio",	"apb1",
 		      0x068, BIT(5), 0);
 static SUNXI_CCU_GATE(bus_ths_clk,	"bus-ths",	"apb1",
-		      0x068, BIT(8), 0);
+		      0x068, BIT(8), CLK_IGNORE_UNUSED);
 static SUNXI_CCU_GATE(bus_i2s0_clk,	"bus-i2s0",	"apb1",
 		      0x068, BIT(12), 0);
 static SUNXI_CCU_GATE(bus_i2s1_clk,	"bus-i2s1",	"apb1",
@@ -387,7 +387,7 @@ static struct ccu_div ths_clk = {
 		.hw.init	= CLK_HW_INIT_PARENTS("ths",
 						      ths_parents,
 						      &ccu_div_ops,
-						      0),
+						      CLK_IGNORE_UNUSED),
 	},
 };
 
