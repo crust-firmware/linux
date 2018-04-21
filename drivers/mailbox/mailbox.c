@@ -152,9 +152,11 @@ static enum hrtimer_restart txdone_hrtimer(struct hrtimer *hrtimer)
  */
 void mbox_chan_received_data(struct mbox_chan *chan, void *mssg)
 {
+	struct mbox_client *cl = READ_ONCE(chan->cl);
+
 	/* No buffering the received data */
-	if (chan->cl->rx_callback)
-		chan->cl->rx_callback(chan->cl, mssg);
+	if (cl && cl->rx_callback)
+		cl->rx_callback(cl, mssg);
 }
 EXPORT_SYMBOL_GPL(mbox_chan_received_data);
 
