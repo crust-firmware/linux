@@ -318,11 +318,10 @@
 &spi0 {
 	status = "okay";
 
-	spi-flash@0 {
-		compatible = "mxicy,mx25l1606e", "jedec,spi-nor";
+	spidev@0 {
+		compatible = "spidev";
 		reg = <0>;
-		spi-max-frequency = <80000000>;
-		m25p,fast-read;
+		spi-max-frequency = <40000000>;
 		status = "okay";
 	};
 };
