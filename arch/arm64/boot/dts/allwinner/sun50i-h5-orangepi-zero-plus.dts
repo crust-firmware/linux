@@ -105,6 +105,10 @@
 	};
 };
 
+&scpi_protocol {
+	status = "okay";
+};
+
 &spi0  {
 	status = "okay";
 
