@@ -119,7 +119,7 @@
 				compatible = "arm,scpi-dvfs-clocks";
 				#clock-cells = <1>;
 				clock-indices = <0>;
-				clock-output-names = "cpux";
+				clock-output-names = "cpu";
 			};
 		};
 
