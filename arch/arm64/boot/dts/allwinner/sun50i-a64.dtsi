@@ -225,6 +225,14 @@
 		compatible = "linux,spdif-dit";
 	};
 
+	thermal-zones {
+		cpu_thermal: cpu_thermal {
+			polling-delay-passive = <330>;
+			polling-delay = <1000>;
+			thermal-sensors = <&scpi_sensors 0>;
+		};
+	};
+
 	timer {
 		compatible = "arm,armv8-timer";
 		allwinner,erratum-unknown1;
