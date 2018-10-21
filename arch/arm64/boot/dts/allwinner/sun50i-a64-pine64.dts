@@ -268,6 +268,10 @@
 	regulator-name = "vcc-rtc";
 };
 
+&scpi_protocol {
+	status = "okay";
+};
+
 &simplefb_hdmi {
 	vcc-hdmi-supply = <&reg_dldo1>;
 };
