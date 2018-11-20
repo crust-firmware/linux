@@ -128,6 +128,14 @@
 		status = "disabled";
 	};
 
+	msgbox_intc: interrupt-controller {
+		compatible = "allwinner,sunxi-msgbox-intc";
+		interrupt-controller;
+		#interrupt-cells = <1>;
+		mboxes = <&msgbox 6>, <&msgbox 7>;
+		mbox-names = "tx", "rx";
+	};
+
 	osc24M: osc24M_clk {
 		#clock-cells = <0>;
 		compatible = "fixed-clock";
