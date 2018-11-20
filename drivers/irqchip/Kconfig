@@ -406,6 +406,15 @@ config IMX_IRQSTEER
 	help
 	  Support for the i.MX IRQSTEER interrupt multiplexer/remapper.
 
+config IRQ_MBOX
+	tristate "Simple mailbox-backed interrupt controller"
+	depends on MAILBOX
+	select IRQ_DOMAIN
+	help
+	  Support for interrupt controllers attached via a mailbox channel.
+	  This allows a coprocessor to inject interrupts via a simple
+	  message-based protocol.
+
 endmenu
 
 config SIFIVE_PLIC
