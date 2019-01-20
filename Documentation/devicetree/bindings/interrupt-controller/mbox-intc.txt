@@ -1,0 +1,33 @@
+Mailbox-backed Interrupt Controller
+===================================
+
+This binding represents an interrupt controller implemented in firmware,
+that uses a mailbox channel to signal and acknowledge interrupts.
+
+Device Node:
+============
+
+Required properties:
+--------------------
+- compatible:		Must be one of the following strings:
+			- allwinner,sunxi-msgbox-intc
+- interrupt-controller:	Signifies that this node is an interrupt controller.
+- #interrupt-cells:	Must be 1.
+- mboxes:		phandle for the mailbox controller and channel
+			specifier. If the mailbox controller has unidirectional
+			channels, two entries are required (see below).
+- mbox-names:		Only required for unidirectional mailbox channels. In
+			that case, it must contain the strings "tx" and "rx"
+			(where "tx" and "rx" are from Linux's perspective, not
+			the direction the interrupts are traveling).
+
+Example:
+--------
+
+	msgbox_intc: interrupt-controller {
+		compatible = "allwinner,sunxi-msgbox-intc";
+		interrupt-controller;
+		#interrupt-cells = <1>;
+		mboxes = <&msgbox 6>, <&msgbox 7>;
+		mbox-names = "tx", "rx";
+	};
