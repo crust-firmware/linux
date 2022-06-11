@@ -336,7 +336,7 @@ static int axp20x_pek_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int __maybe_unused axp20x_pek_suspend(struct device *dev)
+static int axp20x_pek_suspend(struct device *dev)
 {
 	struct axp20x_pek *axp20x_pek = dev_get_drvdata(dev);
 
@@ -395,6 +395,11 @@ static const struct dev_pm_ops axp20x_pek_pm_ops = {
 #endif
 };
 
+static void axp20x_pek_shutdown(struct platform_device *pdev)
+{
+	axp20x_pek_suspend(&pdev->dev);
+}
+
 static const struct platform_device_id axp_pek_id_match[] = {
 	{
 		.name = "axp20x-pek",
@@ -410,6 +415,7 @@ MODULE_DEVICE_TABLE(platform, axp_pek_id_match);
 
 static struct platform_driver axp20x_pek_driver = {
 	.probe		= axp20x_pek_probe,
+	.shutdown	= axp20x_pek_shutdown,
 	.id_table	= axp_pek_id_match,
 	.driver		= {
 		.name		= "axp20x-pek",
